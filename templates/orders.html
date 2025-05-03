@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Orders List</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style_orders.css') }}">
+    <script>
+        function confirmOrder(orderId) {
+            if (confirm("Are you sure you want to place this order?")) {
+                fetch(`/order_placed/${orderId}`, {
+                    method: 'POST'
+                }).then(() => {
+                    alert("Order placed successfully!");
+                    window.location.reload();
+                }).catch(error => console.error('Error:', error));
+            }
+        }
+    </script>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Orders</h1>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="flash-message {{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        {% if orders %}
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Patient Name</th>
+                    <th>Medication</th>
+                    <th>Dosage</th>
+                    <th>Prescription Text</th>
+                    <th>Created At</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for order in orders %}
+                <tr>
+                    <td>{{ order.id }}</td>
+                    <td>{{ order.patient_name }}</td>
+                    <td>{{ order.medication }}</td>
+                    <td>{{ order.dosage }}</td>
+                    <td>
+                        <textarea readonly>{{ order.prescription_text }}</textarea>
+                    </td>
+                    <td>{{ order.created_at }}</td>
+                    <td>
+                        <button onclick="confirmOrder('{{ order.id }}')">Place Order</button>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p>No orders found.</p>
+        {% endif %}
+
+        <p><a href="{{ url_for('index') }}">Back to Home</a></p>
+    </div>
+
+</body>
+</html>

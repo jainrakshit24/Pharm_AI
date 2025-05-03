@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style_drug.css') }}">
+    <title>Drug Checker</title>
+</head>
+<body>
+    <div class="particles">
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                const particleContainer = document.querySelector(".particles");
+                
+                for (let i = 0; i < 15; i++) {
+                    let particle = document.createElement("div");
+                    particle.classList.add("particle");
+                    
+                    let size = Math.random() * 8 + 4;
+                    particle.style.width = size + "px";
+                    particle.style.height = size + "px";
+                    particle.style.left = Math.random() * 100 + "vw";
+                    particle.style.animationDuration = Math.random() * 5 + 3 + "s";
+                    
+                    particleContainer.appendChild(particle);
+                }
+            });
+        </script>
+    </div>    
+    <div class="container">
+        <h1>Drug Checker</h1>
+        <form action="/drug-checker" method="POST">
+            <input type="text" name="medicine_name" placeholder="Enter Medicine Name" required>
+            <button type="submit">Check</button>
+        </form>
+        {% if result is not none %}
+            <h2>{{ result }}</h2>
+        {% endif %}
+    </div>
+</body>
+</html>

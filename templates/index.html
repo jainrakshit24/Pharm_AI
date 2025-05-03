@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Pharmacist AI Assistant</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+  <div class="container">
+      <nav class="navbar">
+            <button style="background: transparent; border: none; padding: 10px 15px; border-radius: 5px; color: #0a8376; font-size: 24px; display: flex; align-items: center;">
+              <img src="./static/logo.png" alt="PharmaGuide" style="height: 50px; margin-right: 10px;">
+              <h3>PharmAI</h3>
+            </button>
+            <a href="{{ url_for('about') }}" style="text-decoration: none;">
+            <button style="border: none; font-size: large; padding: 10px 15px; background-color: #0a8376; border-radius: 5px; color: white;">About us</button>
+            </a></a>
+      </nav>
+      
+      <section class="hero">
+          <div class="hero-text">
+              <h1>Pharmacist <span>AI</span> Assistant</h1>
+              <p>Welcome to the Pharmacist AI Assistant - Your 24/7 AI Pharmacist, because Your Health Matters..!</p>
+              <div class="hero-buttons">
+                    <button style="background: #0a8376; border: none; color: white; padding: 10px 20px; border-radius: 5px;">
+                    <a href="{{ url_for('upload_prescription') }}" style="color: white; text-decoration: none;">Upload Prescription</a>
+                    <a href="/drug-checker">
+                      <button style="background: transparent; border: 2px solid #0a8376; color: white; padding: 10px 20px; font-size: 16px; cursor: pointer; border-radius: 5px;">
+                          Drug Checker
+                      </button>
+                  </a>                  
+              </div>
+          </div>
+          <img src="./static/pharma.png" alt="Healthy Food">
+      </section>
+  </div>
+  <div class="marquee-container">
+    <div class="marquee-text">
+      Your Health, Our Priority – Let our AI Assistant keep you on track with your medications..!
+    </div>
+  </div>
+  <!-- SERVICES SECTION -->
+  <section class="services">
+    <h2>Our Services</h2>
+    <div class="service-cards">
+      <div class="service-card">
+        <h3>Automated Prescription Matching</h3>
+        <p>Harness the power of advanced OCR and AI to seamlessly convert handwritten prescriptions into digital orders. Our system automatically verifies and matches orders, reducing manual entry errors and streamlining your workflow.        </p>
+      </div>
+      <div class="service-card">
+        <h3>Instant Order Creation</h3>
+        <p>From prescription scanning to patient order generation, our intelligent assistant takes care of the entire process—ensuring that every order is accurately created and promptly processed.</p>
+      </div>
+      <div class="service-card">
+        <h3>Drug Content Verification</h3>
+        <p>Visit our dedicated webpage to verify if your medicine contains the correct active drug ingredients. Simply enter the medicine name, and our intelligent system will instantly check its contents—ensuring medication safety, regulatory compliance, and your peace of mind.</p>
+      </div>
+      <div class="service-card">
+        <h3>Integrated Patient Management</h3>
+        <p>Keep track of every order with ease. Our assistant not only matches prescriptions but also helps manage patient records, ensuring personalized care and continuous support</p>
+    </div>
+  </section>
+
+  <!-- WHY CHOOSE US SECTION -->
+  <section class="why-choose">
+    <div class="why-text">
+      <h2 style="color: white;">We Made Health Care Easy for Your Family</h2>
+      <p>
+        Our pharmacist AI assistant is your one-stop solution for personalized medication guidance. Instantly verify prescriptions, check drug content, and manage orders—all from the comfort of your home.
+      </p>
+      <div class="why-stats">
+        <div class="stat-box">
+          <h3>5600+</h3>
+          <p>Healthcare Partners</p>
+        </div>
+        <div class="stat-box">
+          <h3>600K+</h3>
+          <p>Patients Helped</p>
+        </div>
+      </div>
+    </div>
+    <div class="why-img">
+      <img
+        src="./static/doctor-img.jpg"
+        alt="Doctor"
+      />
+    </div>
+  </section>
+
+  <hr class="footer-divider">
+  <footer>
+    <div class="footer-container">
+        <div class="footer-logo">
+            <h2>Pharmacist AI Assistant</h2>
+            <p style="font-family: 'Lato', serif;">Your smart AI-powered pharmacy assistant for instant medical guidance.</p>
+        </div>
+
+        <div class="footer-links">
+            <h3>Quick Links</h3>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">FAQs</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-contact">
+            <h3>Contact Us</h3>
+            <p>Email: support@pharmacistai.com</p>
+            <p>Phone: +1 (234) 567-890</p>
+            <p>Location: Chandigarh, India</p>
+        </div>
+
+        <div class="footer-social">
+            <h3>Follow Us</h3>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </div>
+
+    <div class="footer-bottom">
+        <p>&copy; 2025 Pharmacist AI Assistant | All Rights Reserved</p>
+    </div>
+    </div>
+</footer> 
+</body>
+</html>
