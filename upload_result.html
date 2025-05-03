@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prescription Processed</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style_result.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h1>Extracted Prescription Text</h1>
+    <div class="form-group">
+      <label for="extractedText">Prescription Details:</label>
+      <textarea id="extractedText" rows="5" readonly>{{ extracted_text }}</textarea>
+    </div>
+
+    <h2>Create Order from Prescription</h2>
+    <form action="{{ url_for('create_order') }}" method="post">
+      <div class="form-group">
+        <label for="patient_name">Patient Name:</label>
+        <input type="text" name="patient_name" required>
+      </div>
+
+      <div id="medications-container">
+        {% if extracted_text %}
+          {% set lines = extracted_text.split('\n') %}
+          {% for line in lines %}
+            {% if line.strip() %}
+              <div class="medication-group">
+                <h3>Medication {{ loop.index }}</h3>
+                <div class="form-group">
+                  <label for="medication">Medication (suggested from OCR):</label>
+                  <input type="text" name="medication[]" value="{{ line }}" required>
+                </div>
+                <div class="form-group">
+                  <label for="dosage">Dosage:</label>
+                  <input type="text" name="dosage[]" required>
+                </div>
+                <button type="button" class="delete-medication button" {% if loop.index == 1 %}style="display:none;"{% endif %}>Delete Medication</button>
+              </div>
+            {% endif %}
+          {% endfor %}
+        {% else %}
+          <div class="medication-group">
+            <h3>Medication 1</h3>
+            <div class="form-group">
+              <label for="medication">Medication:</label>
+              <input type="text" name="medication[]" required>
+            </div>
+            <div class="form-group">
+              <label for="dosage">Dosage:</label>
+              <input type="text" name="dosage[]" required>
+            </div>
+            <button type="button" class="delete-medication button" style="display:none;">Delete Medication</button>
+          </div>
+        {% endif %}
+      </div>
+
+      <div class="button-container">
+        <button type="button" id="add-medication" class="button">Add Another Medication</button>
+      </div>
+
+      <input type="hidden" name="prescription_text" value="{{ extracted_text }}">
+      <div class="button-container">
+        <input type="submit" class="button" value="Create Order">
+      </div>
+    </form>
+    <p style="text-align: center; margin-top: 15px;">
+      <a href="{{ url_for('index') }}" style="color: #fff; text-decoration: none;">Back to Home</a>
+    </p>
+  </div>
+
+  <script>
+    document.getElementById('add-medication').addEventListener('click', function() {
+      const medicationsContainer = document.getElementById('medications-container');
+      const medicationCount = medicationsContainer.children.length + 1;
+
+      const medicationGroup = document.createElement('div');
+      medicationGroup.classList.add('medication-group');
+      medicationGroup.innerHTML = `
+        <h3>Medication ${medicationCount}</h3>
+        <div class="form-group">
+          <label for="medication">Medication:</label>
+          <input type="text" name="medication[]" required>
+        </div>
+        <div class="form-group">
+          <label for="dosage">Dosage:</label>
+          <input type="text" name="dosage[]" required>
+        </div>
+        <button type="button" class="delete-medication button">Delete Medication</button>
+      `;
+      medicationsContainer.appendChild(medicationGroup);
+
+      medicationGroup.querySelector('.delete-medication').addEventListener('click', function() {
+        medicationsContainer.removeChild(medicationGroup);
+      });
+    });
+  </script>
+</body>
+</html>
