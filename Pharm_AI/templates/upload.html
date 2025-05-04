@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Upload Prescription</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style_upload.css') }}">
+</head>
+<body>
+
+  </head>
+  <body>
+      <nav class="navbar">
+          <div class="logo">PharmaAI</div>
+      </nav>
+  
+      <!-- Hero Section -->
+      <section class="hero">
+          <div class="hero-text" >
+              <h1>Welcome to Our Pharmacy</h1>
+              <p class="subtitle">Your health, our priority!</p>
+  
+                <div class="upload-section" style="margin-top: 140px;"></div>
+                <form action="{{ url_for('upload_prescription') }}" method="post" enctype="multipart/form-data" style="background-color: #f9f9f9; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+                  <label for="prescription_image" style="font-weight: bold; display: block; margin-bottom: 10px;">Select prescription image:</label>
+                  <input type="file" name="prescription_image" accept="image/*" required style="margin-bottom: 20px;"><br>
+                  <input type="submit" value="Upload and Process" style="background-color: #444; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">
+                </form>
+              </div>
+          </div>
+  
+          <div class="hero-image">
+              <img src="./static/upload.png" alt="Pharmacy Illustration">
+          </div>
+      </section>
+      <section style=" background-color: #27667B; border: 20px solid #27667B;">
+      <div class="marquee-container">
+        <div class="marquee-text">
+          Need medication advice at midnight or midday? Our AI pharmacist is here for you 24/7—because your health never takes a break!
+        </div>
+      </div></section>
+  </body>
+  </html>
+  
+</section>
+</body>
+</html>
